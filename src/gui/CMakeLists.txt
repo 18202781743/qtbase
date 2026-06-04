@@ -1096,6 +1096,7 @@ qt_internal_extend_target(Gui CONDITION UNIX AND (((QT_FEATURE_xcb OR NOT MACOS)
     SOURCES
         platform/unix/qgenericunixtheme.cpp platform/unix/qgenericunixtheme_p.h
         platform/unix/qgnometheme_p.h platform/unix/qgnometheme.cpp
+        platform/unix/qdeepintheme.cpp platform/unix/qdeepintheme_p.h
 )
 
 qt_internal_extend_target(Gui CONDITION TARGET Qt::DBus AND UNIX AND (QT_FEATURE_xcb OR NOT MACOS) AND (QT_FEATURE_xcb OR NOT UIKIT)

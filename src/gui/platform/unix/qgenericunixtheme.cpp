@@ -4,6 +4,7 @@
 
 #include "qgenericunixtheme_p.h"
 #include "qgnometheme_p.h"
+#include "qdeepintheme_p.h"
 
 #include <QPalette>
 #include <QFont>
@@ -166,7 +167,9 @@ QStringList QGenericUnixTheme::themeNames()
                 result.push_back(QLatin1StringView(QKdeTheme::name));
             } else
 #endif
-           if (gtkBasedEnvironments.contains(desktopName)) {
+           if (desktopName.contains("deepin") || desktopName.contains("DDE")) {
+                result.push_back(QLatin1StringView(QDeepinTheme::name));
+            } else if (gtkBasedEnvironments.contains(desktopName)) {
                 // prefer the GTK3 theme implementation with native dialogs etc.
                 result.push_back(QStringLiteral("gtk3"));
                 // fallback to the generic Gnome theme if loading the GTK3 theme fails
@@ -195,6 +198,8 @@ QPlatformTheme *QGenericUnixTheme::createUnixTheme(const QString &name)
     if (name == QLatin1StringView(QKdeTheme::name))
         return QKdeTheme::createKdeTheme();
 #endif
+    if (name == QLatin1StringView(QDeepinTheme::name))
+        return QDeepinTheme::createDeepinTheme();
     if (name == QLatin1StringView(QGnomeTheme::name))
         return new QGnomeTheme;
     return nullptr;
