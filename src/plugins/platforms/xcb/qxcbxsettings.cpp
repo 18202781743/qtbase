@@ -271,4 +271,13 @@ QVariant QXcbXSettings::setting(const QByteArray &property) const
     return d->settings.value(property).value;
 }
 
+QColor QXcbXSettings::activeColor() const
+{
+    Q_D(const QXcbXSettings);
+    QVariant value = d->settings.value(QByteArrayLiteral("Qt/ActiveColor")).value;
+    if (value.isValid())
+        return qvariant_cast<QColor>(value);
+    return QColor();
+}
+
 QT_END_NAMESPACE

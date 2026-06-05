@@ -6,6 +6,8 @@
 
 #include "qxcbscreen.h"
 
+#include <QColor>
+
 QT_BEGIN_NAMESPACE
 
 class QXcbXSettingsPrivate;
@@ -19,6 +21,7 @@ public:
     bool initialized() const;
 
     QVariant setting(const QByteArray &property) const;
+    QColor activeColor() const;
 
     typedef void (*PropertyChangeFunc)(QXcbVirtualDesktop *screen, const QByteArray &name, const QVariant &property, void *handle);
     void registerCallbackForProperty(const QByteArray &property, PropertyChangeFunc func, void *handle);
